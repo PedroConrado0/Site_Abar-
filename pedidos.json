@@ -1,0 +1,48 @@
+{
+  "1541": {
+    "codigo": "1541",
+    "nome": "Pedro Conrado",
+    "itens": [
+      {
+        "vatapa": "Sim",
+        "salada": "Sim",
+        "camarao": "Sim",
+        "pimenta": "Não"
+      },
+      {
+        "vatapa": "Sim",
+        "salada": "Sim",
+        "camarao": "Não",
+        "pimenta": "Sim"
+      },
+      {
+        "vatapa": "Não",
+        "salada": "Sim",
+        "camarao": "Não",
+        "pimenta": "Não"
+      }
+    ],
+    "total": 38,
+    "status": "finalizado",
+    "pagamento": "Pix",
+    "criadoEm": 1794942239894,
+    "atualizadoEm": 1794942289426
+  },
+  "3125": {
+    "codigo": "3125",
+    "nome": "Pedro Conrado",
+    "itens": [
+      {
+        "vatapa": "Sim",
+        "salada": "Sim",
+        "camarao": "Não",
+        "pimenta": "Sim"
+      }
+    ],
+    "total": 12,
+    "status": "finalizado",
+    "pagamento": "Pix",
+    "criadoEm": 1794942120594,
+    "atualizadoEm": 1794942207027
+  }
+}

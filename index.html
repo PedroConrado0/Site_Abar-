@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abará da Baiana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="logo" data-go="home">🌿 Abará da Tonha</div>
+    <nav>
+      <button class="nav-btn" data-go="home">Início</button>
+      <button class="nav-btn" data-go="pedido">Novo pedido</button>
+      <button class="nav-btn" data-go="acompanhar">Acompanhar pedido</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- BOAS-VINDAS -->
+    <section id="home" class="tela ativa">
+      <div class="hero">
+        <div class="folhas" aria-hidden="true">
+          <span>🌿</span><span>🍤</span><span>🌶️</span><span>🌿</span><span>🍤</span><span>🌶️</span>
+        </div>
+        <h1>Bem-vindo(a) ao <span class="destaque">Abará da Tonha</span>!</h1>
+        <p class="frase" id="frase"></p>
+        <div class="acoes">
+          <button class="btn grande" data-go="pedido">🍽️ Realizar novo pedido</button>
+          <button class="btn grande sec" data-go="acompanhar">📦 Acompanhar pedido</button>
+        </div>
+        <p class="dica">Clique no abará e veja o que acontece 👇</p>
+        <div id="abara-bonito" class="abara-bonito" title="Clique!">🫔</div>
+        <p id="contador-cliques" class="dica"></p>
+
+        <a class="insta" href="https://www.instagram.com/abara_da_tonha?rpxt=dzlxcnRsOWI1Yzk3" target="_blank" rel="noopener noreferrer">
+          <svg class="insta-icone" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect>
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+          </svg>
+          <span>Siga nossa página no Instagram <small>@abara_da_tonha</small></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- NOVO PEDIDO -->
+    <section id="pedido" class="tela">
+      <h2>Monte seu abará</h2>
+      <form id="form-pedido" class="card">
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" placeholder="Ex.: Maria" required maxlength="40">
+        </div>
+
+        <div class="campo qtd-campo">
+          <label for="qtd">Quantidade de abarás</label>
+          <div class="qtd">
+            <button type="button" class="qtd-btn" id="qtd-menos" aria-label="Diminuir">−</button>
+            <input type="text" id="qtd" value="1" readonly aria-live="polite">
+            <button type="button" class="qtd-btn" id="qtd-mais" aria-label="Aumentar">+</button>
+          </div>
+          <small class="dica">Cada abará pode ser montado de um jeito diferente (máximo 10).</small>
+        </div>
+
+        <div id="itens"></div>
+        <div class="resumo">
+          <div id="resumo-texto"></div>
+          <div class="total">Total: <strong id="total">R$ 14,00</strong></div>
+        </div>
+        <button type="submit" class="btn grande">Finalizar pedido</button>
+      </form>
+    </section>
+
+    <!-- PAGAMENTO -->
+    <section id="pagamento" class="tela">
+      <h2>Pagamento</h2>
+      <div class="card">
+        <p>Pedido <strong id="pg-codigo"></strong> · Total a pagar: <strong id="pg-total" class="valor"></strong></p>
+
+        <div class="abas">
+          <button type="button" class="aba ativa" data-aba="pix">💠 Pix (QR Code)</button>
+          <button type="button" class="aba" data-aba="credito">💳 Cartão de crédito</button>
+          <button type="button" class="aba" data-aba="debito">💳 Cartão de débito</button>
+        </div>
+
+        <div id="aba-pix" class="painel-aba">
+          <div class="pix-box">
+            <div id="qr" class="qr"></div>
+            <div>
+              <p>Abra o app do seu banco, escolha <b>Pix</b> e leia o QR Code.</p>
+              <p>Chave Pix (celular): <b>(71) 98650-3825</b></p>
+              <p class="dica">Ou use o Pix Copia e Cola:</p>
+              <textarea id="pix-codigo" readonly rows="4"></textarea>
+              <button type="button" class="btn sec" id="btn-copiar">Copiar código</button>
+            </div>
+          </div>
+          <button type="button" class="btn grande" id="btn-paguei">Já fiz o pagamento</button>
+        </div>
+
+        <form id="aba-cartao" class="painel-aba" hidden autocomplete="off">
+          <div class="campo">
+            <label for="cartao-numero">Número do cartão</label>
+            <input type="text" id="cartao-numero" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" required>
+          </div>
+          <div class="campo">
+            <label for="cartao-nome">Nome impresso no cartão</label>
+            <input type="text" id="cartao-nome" placeholder="NOME COMPLETO" maxlength="40" required>
+          </div>
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="cartao-validade">Validade</label>
+              <input type="text" id="cartao-validade" inputmode="numeric" placeholder="MM/AA" maxlength="5" required>
+            </div>
+            <div class="campo">
+              <label for="cartao-cvv">CVV</label>
+              <input type="text" id="cartao-cvv" inputmode="numeric" placeholder="123" maxlength="4" required>
+            </div>
+          </div>
+          <p id="erro-cartao" class="erro" hidden></p>
+          <button type="submit" class="btn grande">Pagar <span id="cartao-tipo"></span></button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ACOMPANHAR -->
+    <section id="acompanhar" class="tela">
+      <h2>Acompanhar pedido</h2>
+      <div class="card">
+        <form id="form-busca" class="busca">
+          <input type="text" id="codigo" placeholder="Número do pedido (ex.: 1024)" inputmode="numeric" required>
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <p id="erro-busca" class="erro" hidden>Pedido não encontrado.</p>
+        <div id="status-box" hidden>
+          <h3 id="status-titulo"></h3>
+          <p id="status-detalhes"></p>
+          <div class="etapas">
+            <div class="etapa" id="etapa-preparo">
+              <div class="bolinha">👩‍🍳</div><span>Pedido sendo preparado</span>
+            </div>
+            <div class="linha"></div>
+            <div class="etapa" id="etapa-final">
+              <div class="bolinha">✅</div><span>Pedido finalizado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal pedido aceito -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-box">
+      <div class="check">✔</div>
+      <h2>Pedido aceito!</h2>
+      <p>Obrigado, <strong id="modal-nome"></strong>! Seu número de pedido é <strong id="modal-codigo"></strong>.</p>
+      <p>Redirecionando para o pagamento...</p>
+    </div>
+  </div>
+
+  <footer>Feito com 💛 e dendê</footer>
+  <script src="qrcode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
